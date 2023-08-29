@@ -39,9 +39,17 @@ The motivation behind weighted mean is that some values are intrinsically more v
 
 Another reason for weighted mean use if when the data collected does not equally represent the different groups that we are interested in measuring. For example, because of the way an online experiment was conducted, we may not have a set of data accurately reflecting all groups in the user base. To correct this, we give higher weight to the values from the groups that were underrepresented.
 
+For the same reasons that one uses a weighted mean, it is also possible to compute a weighted median. As with the median, we first sort the data, although each data value has an associated weight. Instead of the middle number, the weighted median is a value such that the sum of the weights is equal for the lower and upper halves of the sorted list. Like the median, the weighted median is robust to outliers.
+
 - Median is considered robust because it only accounts for the middle value in the dataset, no matter how high or low the extreme values will be the element ordering does not change and hence not get affected by the extreme values on both ends. The weighted median is also robust for similar reasons.
 
 - A common choice for robust metrics are medians and trimmed mean. A common choice percent of trimming for mean is the top and bottom 10%. The trimmed mean is often thought of as the compromise between median and the mean, since it is robust to extreme values is the data but uses more data to calculate the estimate for location.
+
+- Outliers
+The median is referred to as a robust estimate of location since it is not influenced by outliers (extreme cases) that could skew the results. An outlier is any value that is very distant from the other values in a data set. The exact definition of an outlier is some‐ what subjective, although certain conventions are used in various data summaries and plots (see “Percentiles and Boxplots” on page 20). Being an outlier in itself does not make a data value invalid or erroneous (as in the previous example with Bill Gates). Still, outliers are often the result of data errors such as mixing data of different units (kilometers versus meters) or bad readings from a sensor. When outliers are the result of bad data, the mean will result in a poor estimate of location, while the median will still be valid. In any case, outliers should be identified and are usually worthy of further investigation.
+
+<img width="526" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/f2f29076-ec65-4152-984e-84dc2dbb8de2">
+
 
 ## Variabililty and Estimates for Variability
 - Another dimension to explore your dataset/features is the variability/dispersion/how tightly coupled or spread out the values are.
@@ -54,8 +62,13 @@ Another reason for weighted mean use if when the data collected does not equally
   - Order Statistics / Rank: Metrics based on the data values sorted from largest ti smallest.
   - Percentile: Percentile/Quantile (The value such that P percent of the data lies below it).
   - Interquartile Range/IQR: Difference between 75th percentile and 25th percentile.
+ 
+<img width="513" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/dcd98ef7-fc7c-46e7-bae6-43554bcc3b5a">
 
-- Standard deviation is the most widely used estimate of variation. ![image info](./images/std_var.png)
+<img width="518" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/8d6bc943-f2d7-48ba-9e33-740e2bd4c4d3">
+
+
+- Standard deviation is the most widely used estimates of variation are based on the differences, or devia‐ tions, between the estimate of location and the observed data. For a set of data {1, 4, 4}, the mean is 3 and the median is 4. The deviations from the mean are the differences: 1 – 3 = –2, 4 – 3 = 1, 4 – 3 = 1. These deviations tell us how dispersed the data is around the central value. ![image info](./images/std_var.png)
 - Neither Standard Deviation, Mean Absolute Deviation, nor Variance are robust to outliers.
 - A robust estimate of variability is the median absolute deviation from the median. Also known as MAD.
 - Median Absolute Deviation = Median(|xi - m)) For i = 0 to n. Where m is the median.
