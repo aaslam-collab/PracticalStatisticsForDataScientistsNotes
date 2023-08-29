@@ -46,12 +46,12 @@ For the same reasons that one uses a weighted mean, it is also possible to compu
 - A common choice for robust metrics are medians and trimmed mean. A common choice percent of trimming for mean is the top and bottom 10%. The trimmed mean is often thought of as the compromise between median and the mean, since it is robust to extreme values is the data but uses more data to calculate the estimate for location.
 
 - Outliers
-The median is referred to as a robust estimate of location since it is not influenced by outliers (extreme cases) that could skew the results. An outlier is any value that is very distant from the other values in a data set. The exact definition of an outlier is some‐ what subjective, although certain conventions are used in various data summaries and plots (see “Percentiles and Boxplots” on page 20). Being an outlier in itself does not make a data value invalid or erroneous (as in the previous example with Bill Gates). Still, outliers are often the result of data errors such as mixing data of different units (kilometers versus meters) or bad readings from a sensor. When outliers are the result of bad data, the mean will result in a poor estimate of location, while the median will still be valid. In any case, outliers should be identified and are usually worthy of further investigation.
+The median is referred to as a robust estimate of location since it is not influenced by outliers (extreme cases) that could skew the results. An outlier is any value that is very distant from the other values in a data set. The exact definition of an outlier is somewhat subjective, although certain conventions are used in various data summaries and plots (see “Percentiles and Boxplots” on page 20). Being an outlier in itself does not make a data value invalid or erroneous (as in the previous example with Bill Gates). Still, outliers are often the result of data errors such as mixing data of different units (kilometres versus meters) or bad readings from a sensor. When outliers are the result of bad data, the mean will result in a poor estimate of location, while the median will still be valid. In any case, outliers should be identified and are usually worthy of further investigation.
 
 <img width="526" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/f2f29076-ec65-4152-984e-84dc2dbb8de2">
 
 
-## Variabililty and Estimates for Variability
+## Variability and Estimates for Variability
 - Another dimension to explore your dataset/features is the variability/dispersion/how tightly coupled or spread out the values are.
 - Estimates of variability
   - Deviations/errors/residuals: The difference between observed values and the estimate of location.
@@ -68,21 +68,25 @@ The median is referred to as a robust estimate of location since it is not influ
 <img width="518" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/8d6bc943-f2d7-48ba-9e33-740e2bd4c4d3">
 
 
-- Standard deviation is the most widely used estimates of variation are based on the differences, or devia‐ tions, between the estimate of location and the observed data. For a set of data {1, 4, 4}, the mean is 3 and the median is 4. The deviations from the mean are the differences: 1 – 3 = –2, 4 – 3 = 1, 4 – 3 = 1. These deviations tell us how dispersed the data is around the central value. ![image info](./images/std_var.png)
+- Standard deviation is the most widely used estimate of variation based on the differences, or deviations, between the estimate of location and the observed data. For a set of data {1, 4, 4}, the mean is 3 and the median is 4. The deviations from the mean are the differences: 1 – 3 = –2, 4 – 3 = 1, 4 – 3 = 1. These deviations tell us how dispersed the data is around the central value. ![image info](./images/std_var.png)
 - Neither Standard Deviation, Mean Absolute Deviation, nor Variance are robust to outliers.
 - A robust estimate of variability is the median absolute deviation from the median. Also known as MAD.
+- It is also possible to compute a trimmed standard deviation analogous to the trimmed mean
 - Median Absolute Deviation = Median(|xi - m)) For i = 0 to n. Where m is the median.
   
-
 - Estimates based on percentiles:
-  - Percentile calculation can be used to measure variance such as the IQR/ difference b/w 75th and 25th percentile. Because percentiles need sorted data this counts as order statistics. It can be computationally expensive to compute, and hence special algorithms such as Zhang-Wang-2007 were developed.
+  - The most basic measure is the range: the difference between the largest and smallest numbers. The minimum and maximum values themselves are useful to know and are helpful in identifying outliers, but the range is extremely sensitive to outliers and not very useful as a general measure of dispersion in the data. Percentile calculation can be used to measure variance such as the IQR/ difference b/w 75th and 25th percentile. Because percentiles need sorted data this counts as order statistics. It can be computationally expensive to compute, and hence special algorithms such as Zhang-Wang-2007 were developed. To avoid the sensitivity to outliers, we can look at the range of the data after dropping values from each end. Formally, these types of estimates are based on differences between percentiles. In a data set, the Pth percentile is a value such that at least P percent of the values take on this value or less and at least (100 – P) percent of the values take on this value or more. For example, to find the 80th percentile, sort the data. Then, starting with the smallest value, proceed 80 percent of the way to the largest value. Note that the median is the same thing as the 50th percentile. The percentile is essentially the same as a quantile, with quantiles indexed by fractions (so the .8 quan‐ tile is the same as the 80th percentile). A common measurement of variability is the difference between the 25th percentile and the 75th percentile, called the interquartile range (or IQR). Here is a simple example: {3,1,5,3,6,7,2,9}. We sort these to get {1,2,3,3,5,6,7,9}. The 25th percentile is at 2.5, and the 75th percentile is at 6.5, so the interquartile range is 6.5 – 2.5 = 4. Software can have slightly differing approaches that yield different answers (see the following tip); typically, these differences are smaller.
+ 
+<img width="528" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/2f508b18-fa65-4a7a-af83-28710b09f177">
+
 
 ## Exploring Data Distribution
-- Boxplot/whoskers plot: Visually represent percentiles on data.![image info](./images/boxplot.png)
+- Boxplot/whiskers plot: Visually represent percentiles on data.![image info](./images/boxplot.png)
 - Frequency table: Tally count of data that falls into bins.  
-- Histogram: Put the bins from a frequency table on x axis and the tally count on y axis.
-- Density plot: Smoothen out the histogram, and make the yaxis proprotions instead of values. This means that the area under the density plot always equals 1.
+- Histogram: Put the bins from a frequency table on the x-axis and the tally count on the y-axis.
+- Density plot: Smoothen out the histogram, and make the y-axis proportions instead of values. This means that the area under the density plot always equals 1.
 
+<img width="513" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/bf634f58-d9b9-49f9-8b13-9a6d90f6e379">
 
 ## Exploring Binary and Categorical Data
 - Terms:
