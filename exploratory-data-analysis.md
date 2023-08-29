@@ -2,10 +2,11 @@
 
 ## Data Types:
 - Numeric:
-  - Conitnuous (can take any value on an interval)
-  - Discrete (Only integer value such as counts)/
-- Categorical:
-  - Binary(only two values for category) && Ordinal (explicit ordering)
+  - Conitnuous (can take any value on an interval). Such as wind, speed, or time duration
+  - Discrete (Only integer value such as counts) such as count of the occurence of an event
+- Categorical (only fixed set of values) such as type of TV screen (plasma, LCD, LED) or a state name (Alabam, Alaska):
+  - Binary(only two values for category) such as 0/1, Yes/No or T/F.
+  - Ordinal (explicit ordering) such as 1, 2, 3, 4, 5. 
 
 ## Location and Estimates for Location
 - Location: Considered a basic step for exploring data and getting a typical value from your data set.
