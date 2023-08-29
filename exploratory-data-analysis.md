@@ -6,7 +6,10 @@
   - Discrete (Only integer value such as counts) such as count of the occurence of an event
 - Categorical (only fixed set of values) such as type of TV screen (plasma, LCD, LED) or a state name (Alabam, Alaska):
   - Binary(only two values for category) such as 0/1, Yes/No or T/F.
-  - Ordinal (explicit ordering) such as 1, 2, 3, 4, 5. 
+  - Ordinal (explicit ordering) such as 1, 2, 3, 4, 5.
+ 
+  <img width="630" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/4f444ea7-c972-4674-ab79-dd75320462d1">
+
 
 ## Location and Estimates for Location
 - Location: Considered a basic step for exploring data and getting a typical value from your data set.
