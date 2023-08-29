@@ -11,8 +11,9 @@
   <img width="630" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/4f444ea7-c972-4674-ab79-dd75320462d1">
 
 
+
 ## Location and Estimates for Location
-- Location: Considered a basic step for exploring data and getting a typical value from your data set.
+- Location: Considered a basic step for exploring data and getting a typical value from your data set. An estimate of where most of the data is located (i.e., its central tendency)
 - Examples of Estimates of location:
   - Mean/AVG (Sum of vals divided by number of vals).
   - Weighted Mean (Sum of all vals times a weight divided by sum of weights).
@@ -20,13 +21,22 @@
   - Percentile/Quantile (The value such that P percent of the data lies below it)
   - Weighted Median (The value such that one half of the sum of the weights lies above and below the sorted data)
   - Trimmed Mean/Truncated mean (Mean after dropping a fixed number of extreme values)
+ 
+<img width="539" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/2196eef4-80c4-4cc4-8584-e20fff640189">
+
+<img width="382" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/281affab-cc7b-4f14-87d3-9623a8aa3965">
+
 
 **Robustness of a metric refers to it not sensitive to extreme values**
 
 - Mean is not robust => making it a trimmed mean can help eliminate the influence of extreme values
 
+- Trimmed Mean represented as <img width="244" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/2fc105d9-ba73-44a3-af42-dd46f78b2527">
+Which you calculate by dropping a fixed number of sorted values at each end and then taking an average of the remaining val‐ ues. Representing the sorted values by x 1 , x 2 , ..., x n where x 1 is the smallest value and x n the largest. A trimmed mean eliminates the influence of extreme values. For example, in interna‐ tional diving the top score and bottom score from five judges are dropped, and the final score is the average of the scores from the three remaining judges. This makes it difficult for a single judge to manipulate the score, perhaps to favor their country’s contestant. Trimmed means are widely used, and in many cases are preferable to using the ordinary mean—see “Median and Robust Estimates” on page 10 for further discussion.
+
 - Weighted mean is represented as ![image info](./images/weighted_mean.png)
 The motivation behind weighted mean is that some values are intrinsically more variable than others, and highly variable observations are given a lower weight. Example, if we are getting data from a n sensors and the n2 sensor is not very accurate, we can lower the weight for the data from the n2 sensor (downweight).
+
 Another reason for weighted mean use if when the data collected does not equally represent the different groups that we are interested in measuring. For example, because of the way an online experiment was conducted, we may not have a set of data accurately reflecting all groups in the user base. To correct this, we give higher weight to the values from the groups that were underrepresented.
 
 - Median is considered robust because it only accounts for the middle value in the dataset, no matter how high or low the extreme values will be the element ordering does not change and hence not get affected by the extreme values on both ends. The weighted median is also robust for similar reasons.
