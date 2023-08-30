@@ -88,42 +88,139 @@ The median is referred to as a robust estimate of location since it is not influ
 
 <img width="513" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/bf634f58-d9b9-49f9-8b13-9a6d90f6e379">
 
+- Percentiles and Boxplots
+In “Estimates Based on Percentiles” on page 16, we explored how percentiles can be used to measure the spread of the data. Percentiles are also valuable for summarizing the entire distribution. It is common to report the quartiles (25th, 50th, and 75th per‐ centiles) and the deciles (the 10th, 20th, ..., 90th percentiles). Percentiles are especially valuable for summarizing the tails (the outer range) of the distribution. Popular culture has coined the term one-percenters to refer to the people in the top 99th percentile of wealth.
+
+From this boxplot we can immediately see that the median state population is about 5 million, half the states fall between about 2 million and about 7 million, and there are some high population outliers. The top and bottom of the box are the 75th and 25th percentiles, respectively. The median is shown by the horizontal line in the box. The dashed lines, referred to as whiskers, extend from the top and bottom of the box to indicate the range for the bulk of the data. There are many variations of a boxplot; see, for example, the documentation for the R function boxplot [R-base-2015]. By default, the R function extends the whiskers to the furthest point beyond the box, except that it will not go beyond 1.5 times the IQR. Matplotlib uses the same implementation; other software may use a different rule.
+Any data outside of the whiskers is plotted as single points or circles (often considered outliers).
+
+Frequency Tables and Histograms:
+A frequency table of a variable divides up the variable range into equally spaced seg‐ ments and tells us how many values fall within each segment.
+
+It is important to include the empty bins; the fact that there are no values in those bins is useful information. It can also be useful to experiment with different bin sizes. If they are too large, important features of the distribution can be obscured. If they are too small, the result is too granular, and the ability to see the bigger picture is lost.
+
+A histogram is a way to visualize a frequency table, with bins on the x-axis and the data count on the y-axis. In Figure 1-3, for example, the bin centred at 10 million (1e+07) runs from roughly 8 million to 12 million, and there are six states in that bin.
+
+The histogram is shown in Figure 1-3. In general, histograms are plotted such that:
+• Empty bins are included in the graph.
+• Bins are of equal width.
+• The number of bins (or, equivalently, bin size) is up to the user.
+• Bars are contiguous—no empty space shows between bars, unless there is an empty bin.
+
+  - Density Plots and Estimates:
+A key distinction from the histogram plotted in Figure 1-3 is the scale of the y-axis: a density plot corresponds to plotting the histogram as a proportion rather than counts (you specify this in R using the argument freq=FALSE). Note that the total area under the density curve = 1, and instead of counts in bins you calculate areas under the curve between any two points on the x-axis, which correspond to the proportion of the distribution lying between those two points.
+
+<img width="534" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/f392f19e-1a75-4c2c-b143-2987fc9e4f1c">
+
 ## Exploring Binary and Categorical Data
+For categorical data, simple proportions or percentages tell the story of the data.
 - Terms:
-  - Mode: Most commonly occuring category or value in a dataset.
-  - Expected Value: When the categories can be associated with a numeric value, this gives an avergae value based on a category's probabiility of occurence.
-  - Bar charts: Frequency or porportions for each category plotted as bars.
-  - Pie Charts: Frequency or porportions for each category plotted as a wedges in a pie.
+  - Mode: Most commonly occurring category or value in a dataset.
+  - Expected Value: When the categories can be associated with a numeric value, this gives an average value based on a category's probability of occurrence.
+  - Bar charts: Frequency or proportions for each category plotted as bars.
+  - Pie Charts: Frequency or proportions for each category plotted as a wedge in a pie.
+
+Getting a summary of a binary variable or a categorical variable with a few categories is a fairly easy matter: we just figure out the proportion of 1s, or the proportions of the important categories. 
+
+- Mode:
+The mode is the value that appears the most often in the data. The mode is a simple summary statistic for categorical data, and it is generally not sued for numerical data.
 
 - Expected Value:
-  - Multiply each outcome by it's probability of occurence and then sum these values up.
-  - Example: A company offers 2 services A & B. A costs $300/month and B costs $200/month. There is a free webinar and 5% attendees sign up for service A and 15% will sign up for B and 80% will sign up for nothing. This means that the Expected Value from an Attendee can be calculated as:
+  - A special type of categorical data is data in which the categories represent or can be mapped to discrete values on the same scale.
+  - Multiply each outcome by its probability of occurrence and then sum these values up.
+  - Example: A company offers 2 services A & B. A costs $300/month and B costs $200/month. There is a free webinar and 5% of attendees sign up for service A and 15% will sign up for B and 80% will sign up for nothing. This means that the Expected Value from an Attendee can be calculated as:
     - (0.05 * 300) + (0.15 * 200) + (0.8 * 0) = 45.0
-  - Expected calue is a fundamental concpet in business validation and capital budgeting. Example: The E.V of five years of profits from a new acquisition.
+    - The expected value is really a form of weighted mean: it adds the ideas of future expectations and probability weights, often based on subjective judgment
+  - Expected value is a fundamental concept in business validation and capital budgeting. Example: The E.V. of five years of profits from a new acquisition.
+ 
+- Probability:
+For our purposes, the probabil‐ ity that an event will happen is the proportion of times it will occur if the situation could be repeated over and over, countless times. Most often this is an imaginary construction, but it is an adequate operational understanding of probability.
 
-- Correaltion:
+
+<img width="517" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/a4a34953-080c-4392-8c31-ba569df16832">
+
+
+- Correlation:
   - Positive correlation b/w x and y: if x goes up then y goes up, if x goes down y goes down.
-  - Negative correlation b/2 x and y: if one goes up then the other goes down.
+  - Negative correlation b/w x and y: if one goes up then the other goes down.
   - Exploratory data analysis often involves examining correlation among predictors, and between predictors and a target variable.
-  - Correlation Coefficient: Rnaging -1 to 1 this measure the extent to which numeric variables are associated with each other.
+  - Correlation Coefficient: Ranging -1 to 1 this measures the extent to which numeric variables are associated with each other.
   - Correlation Matrix: A table where the variables are shown on both rows and columns and the cell values are the correlations between the variables.
-  - Scatterplot: A plot in which x axis has value of one variable, and y axis has the value of another.
+  - Scatterplot: A plot in which the x-axis has a value of one variable and the y-axis has the value of another.
+  - More useful is a standardized variant: the correlation coefficient, which gives an esti‐ mate of the correlation between two variables that always lies on the same scale. To compute Pearson’s correlation coefficient, we multiply deviations from the mean for variable 1 times those for variable 2, and divide by the product of the standard deviations:
   - Pearson's correlation coefficient: ![image info](./images/pearsons_correlation_coefficient.png)
   - Variables can have an association that is not linear in which case the correlation coefficient may not be a useful metric.
+  - The correlation coefficient always lies between +1 (perfect positive correlation) and –1 (perfect negative correlation); 0 indicates no correlation.
+  - Correlation coefficient is sensitive to outliers in the data. R package `robust` uses the function `covRob` to compute a robust estimate of correlation. The methods in the `scikit-learn` module `sklearn.covariance` implement a variety of approaches
+ 
+
+<img width="476" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/53ff9d68-f096-426f-b8b1-8494ecf85996">
+
+-Scatterplots
+The standard way to visualize the relationship between two measured data variables is with a scatterplot. The x-axis represents one variable and the y-axis another, and each point on the graph is a record.
+
+- Very difficult to identify details in the middle of the plot when there are lots of data points. Add transparency to the points, or use hexagonal binning and density plots, to find additional structure in the data.
+
+<img width="520" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/7909516a-7544-46b9-9b18-91b28d86d584">
+
 
 ## Exploring Two Or More Variables (Multivariate Analysis)
+- Familiar estimators like mean and variance look at variables one at a time (univariate analysis). Correlation analysis is an important method that compares two variables (bivariate analysis)
 - Everything above this looks at a single variable or compares it against another! Multivariate analysis is exploring multiple "columns" at once.
 - Terms:
   - Contingency Table: A tally of counts between or more categorical variables.
-  - Hexagonal Binning: A plot fo two numeric variables with the records binned into hexagons.
+  - Hexagonal Binning: A plot of two numeric variables with the records binned into hexagons.
   - Contour Plot: A plot showing the density of two numeric variables like a topographical map.
   - Violin Plot: Similar to boxplot but showing the density estimate.
+ 
+Like univariate analysis, bivariate analysis involves both computing summary statistics and producing visual displays. The appropriate type of bivariate or multivariate analysis depends on the nature of the data: numeric versus categorical.
 
 ### Hexagonal Binning and Contours
-- When the data points grow from relatively small number to hundreds of millions of records a scatterplot becomes too dense to give accurate visuals. So, instead of plotting points, which appear as one big dark dot on the plot, we group records into hexagonal bins and plotted the hexagons with a color indicating the number of records in that bin.
+- Scatterplots are fine for small amounts of data, but not good for large amounts of data. 
+- When the data points grow from a relatively small number to hundreds of millions of records a scatterplot becomes too dense to give accurate visuals. So, instead of plotting points, which appear as one big dark dot on the plot, we grouped records into hexagonal bins and plotted the hexagons with a colour indicating the number of records in that bin.
 - ![image info](./images/hexbin.png)
-- Other ways to visualize similar data can be heatmaps and contour plots. They all give a a visual representation of 2 dimensional density. 
+- Other ways to visualize similar data can be heatmaps and contour plots. They all give a visual representation of 2-dimensional density.
+- To illustrate, consider the data set kc_tax, which contains the tax-assessed values for residential properties in King County, Washington. In order to focus on the main part of the data, we strip out very expensive and very small or large residences using the subset function (look at the Python code in the Python notebook)
+- Figure 1-8 is a hexagonal binning plot of the relationship between the finished square feet and the tax-assessed value for homes in King County. Rather than plotting points, which would appear as a monolithic dark cloud, we grouped the records into hexagonal bins and plotted the hexagons with a colour indicating the number of records in that bin. In this chart, the positive relationship between square feet and tax-assessed value is clear. An interesting feature is the hint of additional bands above the main (darkest) band at the bottom, indicating homes that have the same square footage as those in the main band but a higher tax-assessed value.
+Figure 1-8 was generated by the powerful R package ggplot2, developed by Hadley Wickham [ggplot2]. ggplot2 is one of several new software libraries for advanced exploratory visual analysis of data; see “Visualizing Multiple Variables” on page 43.
+
+<img width="507" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/8ba65a89-15cf-4da8-873c-ba6f532391a6">
+
+Figure 1-9 uses contours overlaid onto a scatterplot to visualize the relationship between two numeric variables. The contours are essentially a topographical map to two variables; each contour band represents a specific density of points, increasing as one nears a “peak.” This plot shows a similar story as Figure 1-8: there is a secondary peak “north” of the main peak. This chart was also created using ggplot2 with the built-in geom_density2d function:
+
+<img width="568" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/c8290190-c231-4833-8aa8-6dc88a029f03">
+
+
 
 ### Two Categorical Variables
-- A contingency table can be used to summarized 2 categorical variables.
+- A contingency table can be used to summarize 2 categorical variables.
 - It is a table of counts by category. Also known as a pivot table.
+
+<img width="542" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/01d8beba-9744-457e-b0d9-26325d9afdff">
+
+<img width="278" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/e350f6c5-6119-4536-9c53-c4c1bb8cdc40">
+
+
+## Categorical and Numeric Data
+
+The pandas boxplot method takes the by argument that splits the data set into groups
+and creates the individual boxplots:
+
+<img width="473" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/52c58184-6eb6-4f68-9a8e-dc0503856390">
+
+A violin plot, introduced by [Hintze-Nelson-1998], is an enhancement to the boxplot and plots the density estimate with the density on the y-axis. The density is mirrored and flipped over, and the resulting shape is filled in, creating an image resembling a violin. The advantage of a violin plot is that it can show nuances in the distribution that aren’t perceptible in a boxplot. On the other hand, the boxplot more clearly shows the outliers in the data.
+
+The corresponding plot is shown in Figure 1-11. The violin plot shows a concentration in the distribution near zero for Alaska and, to a lesser extent, Delta. This phenomenon is not as obvious in the boxplot. You can combine a violin plot with a boxplot by adding geom_boxplot to the plot (although this works best when colours are used).
+
+<img width="481" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/c0bb4bff-a5b3-4b38-85e5-32cc99e96c9e">
+
+## Visualizing Multiple Variables
+- The types of charts used to compare two variables—scatterplots, hexagonal binning, and boxplots—are readily extended to more variables through the notion of conditioning.
+
+<img width="507" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/208f93a7-cd43-4b57-b364-f0d11ee3e21b">
+
+<img width="537" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/2fe845c5-949e-429d-af66-4a2182272b68">
+
+<img width="505" alt="image" src="https://github.com/aaslam-collab/PracticalStatisticsForDataScientistsNotes/assets/82915930/78fb9079-0529-4456-b2f4-9878a11219a6">
+
+
